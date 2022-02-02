@@ -17,7 +17,7 @@
 			<string name="facebook_client_token">31efb67c6cf0bfe5bee67bddd6c975f5</string>
 		</config-file>
 
-		<config-file parent="/*" target="AndroidManifest.xml"W>		
+		<config-file parent="/*" target="AndroidManifest.xml">		
 			<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 			<meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
 		</config-file>
