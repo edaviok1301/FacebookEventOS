@@ -1,0 +1,17 @@
+{
+  "name": "cordovaPluginFacebookEventOS",
+  "version": "0.0.1",
+  "cordova": {
+    "id": "cordovaPluginFacebookEventOS",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

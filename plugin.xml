@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordovaPluginFacebookEventOS" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>FacebookEventOS</name>
+	<js-module name="FacebookEventOS" src="www/FacebookEventOS.js">
+		<clobbers target="cordova.plugins.FacebookEventOS"/>
+	</js-module>
+	<platform name="android">
+		<config-file parent="/*" target="res/xml/config.xml">
+			<feature name="FacebookEventOS">
+				<param name="android-package" value="cordovaPluginFacebookEventOS.FacebookEventOS"/>
+			</feature>
+		</config-file>
+		<config-file parent="/*" target="res/values/strings.xml">
+			<string name="facebook_app_id">1064497160291882 </string>
+			<string name="fb_login_protocol_scheme">fb1064497160291882 </string>
+			<string name="facebook_client_token">31efb67c6cf0bfe5bee67bddd6c975f5 </string>
+		</config-file>
+		<config-file parent="/*" target="AndroidManifest.xml"/>		
+			<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+			<meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+		</config-file>
+		<source-file src="src/android/FacebookEventOS.java" target-dir="src/cordovaPluginFacebookEventOS/FacebookEventOS"/>
+		<framework src="com.facebook.android:facebook-android-sdk:latest.release"/>
+	</platform>
+</plugin>
