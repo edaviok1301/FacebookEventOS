@@ -23,6 +23,7 @@ public class FacebookEventOS extends CordovaPlugin {
     }
 
     private void logSentFriendRequestEvent(String event,CallbackContext callbackContext){
+        FacebookSdk.sdkInitialize(cordova.getContext());
         AppEventsLogger logger = AppEventsLogger.newLogger(cordova.getContext());
         logger.logEvent(event);
         callbackContext.success();
