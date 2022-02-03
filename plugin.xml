@@ -23,6 +23,6 @@
 		</config-file>
 
 		<source-file src="src/android/FacebookEventOS.java" target-dir="src/cordovaPluginFacebookEventOS/FacebookEventOS"/>
-		<framework src="com.facebook.android:facebook-android-sdk:latest.release"/>
+		<framework src="com.facebook.android:facebook-android-sdk:12.3.0"/>
 	</platform>
 </plugin>
