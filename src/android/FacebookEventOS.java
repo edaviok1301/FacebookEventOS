@@ -6,6 +6,8 @@ import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 /**
@@ -22,7 +24,7 @@ public class FacebookEventOS extends CordovaPlugin {
         return false;
     }
 
-    private void logSentFriendRequestEvent(String event,CallbackContext callbackContext){
+    private void logSentFriendRequestEvent(String event,CallbackContext callbackContext)throws FacebookException {
         FacebookSdk.sdkInitialize(cordova.getContext());
         AppEventsLogger logger = AppEventsLogger.newLogger(cordova.getContext());
         logger.logEvent(event);
