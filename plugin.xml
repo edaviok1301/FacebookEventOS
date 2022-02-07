@@ -11,7 +11,7 @@
 			</feature>
 		</config-file>
 
-		<config-file parent="/*" target="res/values/strings.xml">
+		<!--config-file parent="/*" target="res/values/strings.xml">
 			<string name="facebook_app_id">1064497160291882</string>
 			<string name="fb_login_protocol_scheme">fb1064497160291882</string>
 			<string name="facebook_client_token">31efb67c6cf0bfe5bee67bddd6c975f5</string>
@@ -20,7 +20,7 @@
 		<config-file parent="/*" target="AndroidManifest.xml">		
 			<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 			<meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
-		</config-file>
+		</config-file-->
 
 		<source-file src="src/android/FacebookEventOS.java" target-dir="src/cordovaPluginFacebookEventOS/FacebookEventOS"/>
 		<framework src="com.facebook.android:facebook-android-sdk:12.3.0"/>
