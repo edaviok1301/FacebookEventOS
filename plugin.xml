@@ -10,19 +10,42 @@
 				<param name="android-package" value="cordovaPluginFacebookEventOS.FacebookEventOS"/>
 			</feature>
 		</config-file>
-
-		<!--config-file parent="/*" target="res/values/strings.xml">
-			<string name="facebook_app_id">1064497160291882</string>
-			<string name="fb_login_protocol_scheme">fb1064497160291882</string>
-			<string name="facebook_client_token">31efb67c6cf0bfe5bee67bddd6c975f5</string>
-		</config-file>
-
-		<config-file parent="/*" target="AndroidManifest.xml">		
-			<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-			<meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
-		</config-file-->
-
 		<source-file src="src/android/FacebookEventOS.java" target-dir="src/cordovaPluginFacebookEventOS/FacebookEventOS"/>
 		<framework src="com.facebook.android:facebook-android-sdk:12.3.0"/>
+	</platform>
+
+	<platform name="ios">
+		<config-file parent="/*" target="config.xml">
+			<feature name="FacebookEventOS">
+				<param name="ios-package" value="FacebookEventOS"/>
+			</feature>
+		</config-file>
+		<source-file src="src/ios/FacebookEventOS.m"/>
+		<framework src="https://github.com/facebook/facebook-ios-sdk.git"/>
+		<config-file parent="CFBundleURLTypes" target="*-Info.plist">
+			<array>
+				<dict>
+					<key>CFBundleURLSchemes</key>
+					<array>
+						<string>fb1064497160291882</string>
+					</array>
+				</dict>
+			</array>
+
+			<key>FacebookAppID</key>
+			<string>1064497160291882</string>
+
+			<key>FacebookClientToken</key>
+			<string>31efb67c6cf0bfe5bee67bddd6c975f5</string>
+
+			<key>FacebookDisplayName</key>
+			<string>Mi Entel Perú</string>
+		</config-file>
+		<config-file parent="LSApplicationQueriesSchemes" target="*-Info.plist">
+			<array>
+				<string>fbapi</string>
+				<string>fb-messenger-share-api</string>
+			</array>
+		</config-file>
 	</platform>
 </plugin>
