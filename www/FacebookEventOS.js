@@ -1,5 +1,5 @@
 var exec = require('cordova/exec');
 
-exports.logSentFriendRequestEvent = function (arg0, success, error) {
-    exec(success, error, 'FacebookEventOS', 'logSentFriendRequestEvent', [arg0]);
+exports.logSentFriendRequestEvent = function (eventName,params, success, error) {
+    exec(success, error, 'FacebookEventOS', 'logSentFriendRequestEvent', [eventName,params]);
 };
