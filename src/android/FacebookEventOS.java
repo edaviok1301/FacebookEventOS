@@ -73,7 +73,7 @@ public class FacebookEventOS extends CordovaPlugin {
             public void run() {
                 try {
                     Bundle bundleEvent = iteratorParams(params);
-                    BigDecimal purchase = (BigDecimal) bundleEvent.get("purchase");
+                    BigDecimal purchase =  new BigDecimal(Float.toString(bundleEvent.getFloat("purchase")));
                     Currency currency = Currency.getInstance(bundleEvent.getString("currency"));
                     bundleEvent.remove("purchase");
                     bundleEvent.remove("currency");
@@ -85,12 +85,16 @@ public class FacebookEventOS extends CordovaPlugin {
 
                 } catch (JSONException e) {
                     callbackContext.error(e.getMessage());
+                    Log.e(TAG,"logEvent JSONException "+eventName+" - "+e.getMessage());
+                }catch (Exception e){
+                    callbackContext.error(e.getMessage());
                     Log.e(TAG,"logEvent error "+eventName+" - "+e.getMessage());
                 }
             }
         });
 
     }
+
 
     private Bundle iteratorParams(final JSONObject params)throws JSONException{
         Bundle bundleEvent = new Bundle();
