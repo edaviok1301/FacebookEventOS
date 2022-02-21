@@ -39,6 +39,7 @@ public class FacebookEventOS extends CordovaPlugin {
 
     @Override
     protected void pluginInitialize() {
+        Log.d(TAG, "init plugin");
         FacebookSdk.sdkInitialize(cordova.getContext());
         FacebookSdk.setAutoInitEnabled(true);
         FacebookSdk.fullyInitialize();
