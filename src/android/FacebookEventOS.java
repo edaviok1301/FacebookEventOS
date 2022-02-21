@@ -37,15 +37,7 @@ public class FacebookEventOS extends CordovaPlugin {
         return false;
     }
 
-    @Override
-    protected void pluginInitialize() {
-        Log.d(TAG, "init plugin");
-        FacebookSdk.sdkInitialize(cordova.getContext());
-        FacebookSdk.setAutoInitEnabled(true);
-        FacebookSdk.fullyInitialize();
-        FacebookSdk.setAutoLogAppEventsEnabled(true);
-        super.pluginInitialize();
-    }
+
 
     private void logSentEvent(final String eventName,final CallbackContext callbackContext,final JSONObject params) throws FacebookException {
         Log.d(TAG, "logSentEvent called. name: " + eventName);
