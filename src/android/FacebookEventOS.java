@@ -24,7 +24,7 @@ import java.util.Iterator;
 public class FacebookEventOS extends CordovaPlugin {
 
     private static final String TAG = "FacebookEventOS ";
-    AppEventsLogger logger = AppEventsLogger.newLogger(cordova.getContext());
+    AppEventsLogger logger;
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if(action.equals("logSentEvent")){
@@ -48,7 +48,7 @@ public class FacebookEventOS extends CordovaPlugin {
 
     private void logSentEvent(final String eventName,final CallbackContext callbackContext,final JSONObject params) throws FacebookException {
         Log.d(TAG, "logSentEvent called. name: " + eventName);
-
+        logger = AppEventsLogger.newLogger(cordova.getContext());
         cordova.getThreadPool().execute(new Runnable() {
             @Override
             public void run() {
@@ -66,7 +66,7 @@ public class FacebookEventOS extends CordovaPlugin {
 
     private void logSendPurchaseEvent(final String eventName, final CallbackContext callbackContext, final JSONObject params){
         Log.d(TAG, "logSendPurchaseEvent called. name: " + eventName);
-
+        logger = AppEventsLogger.newLogger(cordova.getContext());
         cordova.getThreadPool().execute(new Runnable() {
             @Override
             public void run() {
