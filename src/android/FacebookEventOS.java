@@ -10,12 +10,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsConstants;
 import com.facebook.appevents.AppEventsLogger;
 
-import java.math.BigDecimal;
-import java.util.Currency;
 import java.util.Iterator;
 
 /**
@@ -31,12 +30,8 @@ public class FacebookEventOS extends CordovaPlugin {
             this.logSentEvent(args.getString(0),callbackContext,args.getJSONObject(1));
             return true;
         }
-        if (action.equals("logSendPurchaseEvent")) {
-            this.logSendPurchaseEvent(args.getString(0),callbackContext,args.getJSONObject(1));
-        }
         return false;
     }
-
 
 
     private void logSentEvent(final String eventName,final CallbackContext callbackContext,final JSONObject params) throws FacebookException {
@@ -46,7 +41,13 @@ public class FacebookEventOS extends CordovaPlugin {
             @Override
             public void run() {
                 try {
-                    logger.logEvent(eventName,iteratorParams(params));
+                    if(eventName == AppEventsConstants.EVENT_NAME_PURCHASED){
+                        Bundle bundleEvent = iteratorParams(params);
+                        Double purchase = Double.parseDouble(bundleEvent.getString("purchase"));
+                        logger.logEvent(AppEventsConstants.EVENT_NAME_PURCHASED,purchase,iteratorParams(params));
+                    }else {
+                        logger.logEvent(eventName, iteratorParams(params));
+                    }
                     callbackContext.success();
                     Log.d(TAG,"logEvent success "+eventName);
                 }catch (Exception e){
@@ -56,37 +57,6 @@ public class FacebookEventOS extends CordovaPlugin {
             }
         });
     }
-
-    private void logSendPurchaseEvent(final String eventName, final CallbackContext callbackContext, final JSONObject params){
-        Log.d(TAG, "logSendPurchaseEvent called. name: " + eventName);
-        logger = AppEventsLogger.newLogger(cordova.getContext());
-        cordova.getThreadPool().execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Bundle bundleEvent = iteratorParams(params);
-                    BigDecimal purchase =  new BigDecimal(Float.toString(bundleEvent.getFloat("purchase")));
-                    Currency currency = Currency.getInstance(bundleEvent.getString("currency"));
-                    bundleEvent.remove("purchase");
-                    bundleEvent.remove("currency");
-                    if(bundleEvent.size() == 0){
-                        logger.logPurchase(purchase,currency);
-                    }else {
-                        logger.logPurchase(purchase, currency,bundleEvent);
-                    }
-
-                } catch (JSONException e) {
-                    callbackContext.error(e.getMessage());
-                    Log.e(TAG,"logEvent JSONException "+eventName+" - "+e.getMessage());
-                }catch (Exception e){
-                    callbackContext.error(e.getMessage());
-                    Log.e(TAG,"logEvent error "+eventName+" - "+e.getMessage());
-                }
-            }
-        });
-
-    }
-
 
     private Bundle iteratorParams(final JSONObject params)throws JSONException{
         Bundle bundleEvent = new Bundle();
