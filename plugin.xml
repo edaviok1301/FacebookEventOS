@@ -21,7 +21,8 @@
 			</feature>
 		</config-file>
 		<source-file src="src/ios/FacebookEventOS.m"/>
-		<podspec>
+		<framework src="https://github.com/facebook/facebook-ios-sdk.git"/>
+		<!--podspec>
             <config>
                 <source url="https://cdn.cocoapods.org/"/>
             </config>
@@ -30,7 +31,7 @@
                 <pod name="FBSDKLoginKit" spec="12.3.0"/>
                 <pod name="FBSDKShareKit" spec="12.3.0"/>
             </pods>
-        </podspec>
+        </podspec-->
 		<config-file parent="CFBundleURLTypes" target="*-Info.plist">
 			<array>
 				<dict>
